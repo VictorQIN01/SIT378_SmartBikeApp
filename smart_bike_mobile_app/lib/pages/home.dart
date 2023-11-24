@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
 
   // Bike variables
   //TODO: Get data from MQTT when available
-  num power = 0, speed = 1, rpm = 0;
+  num power = 0, speed = 11, rpm = 0;
   num distance = 0;
 
   void stopTimer() {

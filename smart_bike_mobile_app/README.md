@@ -1,6 +1,6 @@
 # smart_bike_mobile_app
 
-A new Flutter project.
+A new mobile application for Redback Smart Bike
 
 ## Getting Started
 
