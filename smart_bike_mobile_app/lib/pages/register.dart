@@ -7,6 +7,7 @@ class Register extends StatelessWidget {
   Register({super.key});
 
   final emailController = TextEditingController();
+  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
 
@@ -69,6 +70,34 @@ class Register extends StatelessWidget {
                       fillColor: const Color(0xFFD9D9D9),
                       filled: true,
                       hintText: 'Email',
+                    ),
+                  ),
+                ),
+
+                // Username Input
+                const SizedBox(
+                  height: 30,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40.0,
+                  ),
+                  child: TextField(
+                    controller: usernameController,
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const  BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color(0xFF167EE6),
+                          width: 2.5,
+                        ),
+                      ),
+                      fillColor: const Color(0xFFD9D9D9),
+                      filled: true,
+                      hintText: 'Username',
                     ),
                   ),
                 ),
@@ -143,10 +172,11 @@ class Register extends StatelessWidget {
                     onPressed: () {
                       // Local variables to store user input
                       String email = emailController.text;
+                      String username = usernameController.text;
                       String password = passwordController.text;
                       String passwordConfirm = passwordConfirmController.text;
 
-                      register(email, password, passwordConfirm, context);
+                      register(email, username, password, passwordConfirm, context);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith((states) => const Color(0xFF370E4A)),
@@ -205,7 +235,7 @@ class Register extends StatelessWidget {
   }
 }
 
-Future<void> register(String email, String password, String passwordConfirm, BuildContext context) async {
+Future<void> register(String email, String username, String password, String passwordConfirm, BuildContext context) async {
   final auth = FirebaseAuth.instance;
 
   // 1. Check if any input is empty
@@ -243,6 +273,7 @@ Future<void> register(String email, String password, String passwordConfirm, Bui
     try {
       await auth.createUserWithEmailAndPassword(email: email, password: password)
           .then((auth) {
+            auth.user!.updateDisplayName(username);
             Fluttertoast.showToast(msg: "User registration completed!");
             Navigator.pushAndRemoveUntil(context,
               MaterialPageRoute(builder: (context) =>
