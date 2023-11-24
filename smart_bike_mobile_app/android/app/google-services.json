@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "316070586108",
+    "project_id": "fluttersmartbike",
+    "storage_bucket": "fluttersmartbike.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316070586108:android:4d79631c836a4dc9ce9979",
+        "android_client_info": {
+          "package_name": "com.example.smart_bike_mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0YKStvay9NPAgjP5v2LAr3WSgfKECyyY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
