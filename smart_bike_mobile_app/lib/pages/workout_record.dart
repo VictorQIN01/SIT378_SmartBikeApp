@@ -67,7 +67,7 @@ class _WorkoutRecordState extends State<WorkoutRecord> {
                         ));
                   },
                   title: Text(
-                    'Workout Session #$index',
+                    'Workout Session #${index + 1}',
                     style: const TextStyle(
                       color: Color(0xFFE3E3E3),
                     ),

@@ -56,7 +56,7 @@ class WorkoutRecordItem extends StatelessWidget {
                 height: 50,
               ),
               Text(
-                'Workout Session #$workoutId',
+                'Workout Session #${workoutId + 1}',
                 style: const TextStyle(
                   color: Color(0xFFE3E3E3),
                   fontWeight: FontWeight.bold,

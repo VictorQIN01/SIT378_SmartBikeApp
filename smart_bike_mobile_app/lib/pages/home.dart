@@ -90,6 +90,9 @@ class _HomeState extends State<Home> {
     client.logging(on: true);
     client.onConnected = () {
       debugPrint('Connected');
+      setState(() {
+        mqttConnected = true;
+      });
     };
     client.onDisconnected = () {
       debugPrint('Disconnected');
@@ -118,6 +121,7 @@ class _HomeState extends State<Home> {
     } catch (e) {
       debugPrint('MQTT Connection ERROR: $e');
       client.disconnect();
+      return;
     }
 
     var topic = 'bike/$bikeId/#';
@@ -925,9 +929,6 @@ class _HomeState extends State<Home> {
                               } else {
                                 bikeId = bikeIdInput;
                                 await connectMqtt();
-                                setState(() {
-                                  mqttConnected = true;
-                                });
                             }},
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
