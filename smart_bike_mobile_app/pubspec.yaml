@@ -41,6 +41,7 @@ dependencies:
   firebase_auth: ^4.14.1
   mqtt_client: ^10.0.0
   flutter_dotenv: ^5.1.0
+  cloud_firestore: ^4.13.3
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - lib/assets/
+    - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

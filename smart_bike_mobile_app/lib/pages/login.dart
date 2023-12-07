@@ -1,7 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:smart_bike_mobile_app/pages/home.dart';
+import 'package:smart_bike_mobile_app/utils/firebase_auth_util.dart';
 import 'package:smart_bike_mobile_app/pages/register.dart';
 
 class Login extends StatelessWidget {
@@ -9,6 +7,7 @@ class Login extends StatelessWidget {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final firebaseAuthUtil = FirebaseAuthUtil();
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +114,7 @@ class Login extends StatelessWidget {
                         String email = emailController.text;
                         String password = passwordController.text;
 
-                        login(email, password, context);
+                        firebaseAuthUtil.login(email, password, context);
                       },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateColor.resolveWith((states) => const Color(0xFF370E4A)),
@@ -221,27 +220,5 @@ class Login extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-Future<void> login(String email, String password, BuildContext context) async {
-  final auth = FirebaseAuth.instance;
-
-  if (email.isEmpty || password.isEmpty) {
-    Fluttertoast.showToast(msg: 'Please enter email and password');
-  }
-  else {
-    try {
-      await auth.signInWithEmailAndPassword(email: email, password: password)
-          .then((auth) {
-            Fluttertoast.showToast(msg: "Login Successful!");
-            Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) =>
-              const Home(),
-            ), ((Route route) => false));
-      });
-    } on FirebaseAuthException catch (e) {
-      Fluttertoast.showToast(msg: 'Login failed with error: $e');
-    }
   }
 }

@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:smart_bike_mobile_app/utils/firebase_auth_util.dart';
 import 'package:smart_bike_mobile_app/pages/login.dart';
 
 class Register extends StatelessWidget {
@@ -10,6 +9,7 @@ class Register extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
+  final firebaseAuthUtil = FirebaseAuthUtil();
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +176,7 @@ class Register extends StatelessWidget {
                       String password = passwordController.text;
                       String passwordConfirm = passwordConfirmController.text;
 
-                      register(email, username, password, passwordConfirm, context);
+                      firebaseAuthUtil.register(email, username, password, passwordConfirm, context);
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateColor.resolveWith((states) => const Color(0xFF370E4A)),
@@ -232,58 +232,5 @@ class Register extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-Future<void> register(String email, String username, String password, String passwordConfirm, BuildContext context) async {
-  final auth = FirebaseAuth.instance;
-
-  // 1. Check if any input is empty
-  if (email.isEmpty||password.isEmpty||passwordConfirm.isEmpty) {
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: 'Please fill in all fields in registration form.',
-      toastLength: Toast.LENGTH_LONG,
-      fontSize: 16,
-    );
-  }
-
-  // 2. Check if Password matches Confirm Password
-  else if (password != passwordConfirm) {
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: 'Passwords do not match!',
-      toastLength: Toast.LENGTH_LONG,
-      fontSize: 16,
-    );
-  }
-
-  // 3. Check if password is too short
-  else if (password.length < 8) {
-    Fluttertoast.cancel();
-    Fluttertoast.showToast(
-      msg: 'Passwords is too short!',
-      toastLength: Toast.LENGTH_LONG,
-      fontSize: 16,
-    );
-  }
-
-  // 4. Firebase authentication
-  else {
-    try {
-      await auth.createUserWithEmailAndPassword(email: email, password: password)
-          .then((auth) {
-            auth.user!.updateDisplayName(username);
-            Fluttertoast.showToast(msg: "User registration completed!");
-            Navigator.pushAndRemoveUntil(context,
-              MaterialPageRoute(builder: (context) =>
-                Login(),
-              ), ((Route route) => false)
-            );
-          }
-      );
-    } catch (e) {
-      Fluttertoast.showToast(msg: 'Registration Error: $e');
-    }
   }
 }

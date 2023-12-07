@@ -12,7 +12,12 @@
           "package_name": "com.example.smart_bike_mobile_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "316070586108-4odr99lo0vlummpsldqaotann3om5ef4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC0YKStvay9NPAgjP5v2LAr3WSgfKECyyY"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "316070586108-4odr99lo0vlummpsldqaotann3om5ef4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "316070586108-0ribcn31i0octksksje985fgraldb2d1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smartBikeMobileApp"
+              }
+            }
+          ]
         }
       }
     }
