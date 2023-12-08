@@ -404,31 +404,6 @@ class _HomeState extends State<Home> {
                   const SizedBox(
                     height: 20,
                   ),
-
-                  // Settings Button
-                  GestureDetector(
-                    onTap: () {
-                      setScreenId(4);
-                    },
-                    child: Container(
-                      width: 200,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Color(0xFF9070AA),
-                          ),
-                        ),
-                      ),
-                      child: const Text('Settings',
-                          style: TextStyle(
-                            color: Color(0xFFE3E3E3),
-                            fontWeight: FontWeight.bold,
-                          )),
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -872,7 +847,7 @@ class _HomeState extends State<Home> {
                               horizontal: 5,
                             ),
                             child: Text(
-                              'Welcome ${FirebaseAuth.instance.currentUser?.displayName}, thank you for using the Redback Smart Bike mobile application! \nBefore you continue: this application requires a Redback Smart Bike to get started, please connect with your smart bike by entering your bike ID.',
+                              'Welcome ${firebaseAuthUtil.auth.currentUser!.displayName}, thank you for using the Redback Smart Bike mobile application! \nBefore you continue: this application requires a Redback Smart Bike to get started, please connect with your smart bike by entering your bike ID.',
                               textAlign: TextAlign.justify,
                               style: const TextStyle(
                                 color: Color(0xFFE3E3E3),
